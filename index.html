@@ -442,10 +442,10 @@
 
       <!-- Newsletter (condicional) -->
       <div class="field newsletter-field" id="newsletter-field">
-        <div class="checkbox-field" onclick="toggleCheckbox()">
+        <label class="checkbox-field" for="newsletter" onclick="">
           <input type="checkbox" id="newsletter" name="newsletter" value="sim">
           <span class="checkbox-label">Quero receber novidades, eventos e informações da IPBCP no meu e-mail.</span>
-        </div>
+        </label>
       </div>
 
       <button type="submit" class="btn-submit" id="btn-submit">
@@ -472,7 +472,7 @@
 </div>
 
 <script>
-  const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby5DS7z47cTO7xdljhY3YV9V8wWGjxo0zO0JdHIAGrYAOV-M5ChWhz2CRdw76MUh8v0SQ/exec';
+  const APPS_SCRIPT_URL = 'COLE_AQUI_A_URL_DO_APPS_SCRIPT';
 
   const emailInput = document.getElementById('email');
   const newsletterField = document.getElementById('newsletter-field');
@@ -503,11 +503,6 @@
       }
     });
   });
-
-  function toggleCheckbox() {
-    const cb = document.getElementById('newsletter');
-    cb.checked = !cb.checked;
-  }
 
   document.getElementById('visitor-form').addEventListener('submit', async function(e) {
     e.preventDefault();
