@@ -464,7 +464,7 @@
 
     <div class="form-header reveal">
       <h2>Queremos te conhecer!</h2>
-      <p>Que bom ter você aqui! Preencha o que se sentir à vontade.<br>Apenas o nome é obrigatório.</p>
+      <p>Que bom ter você aqui! Preencha o que se sentir à vontade.<br>Os campos com <span style="color:#c0392b;">*</span> são obrigatórios.</p>
     </div>
 
     <div class="card reveal" id="form-card">
@@ -488,7 +488,7 @@
         </div>
 
         <div class="field">
-          <label for="como_conheceu">Como nos conheceu? <span class="optional">(opcional)</span></label>
+          <label for="como_conheceu">Como nos conheceu? <span class="required">*</span></label>
           <select id="como_conheceu" name="como_conheceu">
             <option value="" disabled selected>Selecione uma opção</option>
             <option value="indicacao">Indicação de amigo ou familiar</option>
@@ -497,10 +497,11 @@
             <option value="evento">Participei de um evento</option>
             <option value="outro">Outro</option>
           </select>
+          <p class="error-msg" id="como-error">Por favor, selecione como nos conheceu.</p>
         </div>
 
         <div class="field">
-          <label>É a primeira vez na nossa igreja?</label>
+          <label>É a primeira vez na nossa igreja? <span class="required">*</span></label>
           <div class="radio-group">
             <div class="radio-option">
               <input type="radio" name="primeira_vez" id="pv_sim" value="sim">
@@ -511,10 +512,11 @@
               <label for="pv_nao">Já estive antes</label>
             </div>
           </div>
+          <p class="error-msg" id="primeira-vez-error">Por favor, responda esta pergunta.</p>
         </div>
 
         <div class="field">
-          <label>Gostaria de receber uma visita pastoral?</label>
+          <label>Gostaria de receber uma visita pastoral? <span class="required">*</span></label>
           <div class="radio-group">
             <div class="radio-option">
               <input type="radio" name="deseja_contato" id="dc_sim" value="sim">
@@ -525,6 +527,7 @@
               <label for="dc_nao">Não, obrigado</label>
             </div>
           </div>
+          <p class="error-msg" id="deseja-contato-error">Por favor, responda esta pergunta.</p>
         </div>
 
         <div class="field">
@@ -551,7 +554,7 @@
       <div class="success-icon">🙏</div>
       <h2 class="success-title">Bem-vindo à família!</h2>
       <p class="success-text">
-        Seu contato foi registrado com sucesso.<br>
+        Seu cadastro foi registrado com sucesso.<br>
         É uma alegria ter você aqui conosco.
       </p>
       <p class="success-verse">
@@ -563,7 +566,7 @@
 </section>
 
 <footer class="footer">
-  Presbiteriana Chácara Parreiral • Serra/ES • secretaria@ipchacara.org
+  Presbiteriana Chácara Parreiral • Rua Teresa Tironi, 15 - Guaraciaba - Serra/ES • secretaria@ipchacara.org
 </footer>
 
 <script>
@@ -643,6 +646,42 @@
     } else {
       whatsappInput.classList.remove('error');
       whatsappError.classList.remove('show');
+    }
+
+    const comoConheceu = document.getElementById('como_conheceu');
+    const comoError = document.getElementById('como-error');
+    if (!comoConheceu.value) {
+      comoConheceu.classList.add('error');
+      comoError.classList.add('show');
+      valid = false;
+    } else {
+      comoConheceu.classList.remove('error');
+      comoError.classList.remove('show');
+    }
+
+    const primeiraVezChecked = document.querySelector('input[name="primeira_vez"]:checked');
+    const primeiraVezError = document.getElementById('primeira-vez-error');
+    if (!primeiraVezChecked) {
+      primeiraVezError.classList.add('show');
+      valid = false;
+    } else {
+      primeiraVezError.classList.remove('show');
+    }
+
+    const desejaChecked = document.querySelector('input[name="deseja_contato"]:checked');
+    const desejaError = document.getElementById('deseja-contato-error');
+    if (!desejaChecked) {
+      desejaError.classList.add('show');
+      valid = false;
+    } else {
+      desejaError.classList.remove('show');
+    }
+
+    if (!document.querySelector('input[name="deseja_contato"]:checked')) {
+      document.getElementById('deseja-contato-error').classList.add('show');
+      valid = false;
+    } else {
+      document.getElementById('deseja-contato-error').classList.remove('show');
     }
 
     if (!valid) return;
