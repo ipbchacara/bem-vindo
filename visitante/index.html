@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Visitante — Presbiteriana Chácara Parreiral</title>
+<title>Cadastro de Visitante — Presbiteriana Chácara Parreiral</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -36,6 +36,55 @@
       radial-gradient(ellipse at 85% 20%, rgba(10,34,5,0.6) 0%, transparent 55%);
     padding: 2rem 1.5rem 2rem;
     text-align: center;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    transition: padding 0.4s ease, opacity 0.4s ease;
+    will-change: opacity, padding;
+  }
+
+  .hero.scrolled {
+    padding: 0.6rem 1.5rem;
+  }
+
+  .hero.hidden {
+    opacity: 0;
+    padding: 0;
+    pointer-events: none;
+    max-height: 0;
+    overflow: hidden;
+  }
+
+  .hero-logo {
+    transition: width 0.4s ease, height 0.4s ease, margin 0.4s ease;
+  }
+
+  .hero.scrolled .hero-logo {
+    width: 28px !important;
+    height: 28px !important;
+    margin-bottom: 0.25rem !important;
+  }
+
+  .hero-title {
+    transition: font-size 0.4s ease;
+  }
+
+  .hero.scrolled .hero-title {
+    font-size: 0.88rem !important;
+  }
+
+  .hero-divider,
+  .hero-verse {
+    transition: opacity 0.3s ease, max-height 0.3s ease, margin 0.3s ease;
+    max-height: 80px;
+    overflow: hidden;
+  }
+
+  .hero.scrolled .hero-divider,
+  .hero.scrolled .hero-verse {
+    opacity: 0;
+    max-height: 0;
+    margin: 0;
   }
 
   .hero-logo {
@@ -465,7 +514,7 @@
         </div>
 
         <div class="field">
-          <label>Gostaria de ser receber uma visita pastoral?</label>
+          <label>Gostaria de ser visitado pela equipe pastoral?</label>
           <div class="radio-group">
             <div class="radio-option">
               <input type="radio" name="deseja_contato" id="dc_sim" value="sim">
@@ -514,11 +563,26 @@
 </section>
 
 <footer class="footer">
-  Presbiteriana Chácara Parreiral • Rua Teresa Tironi, 15 - Guaraciaba - Serra/ES • secretaria@ipchacara.org
+  Presbiteriana Chácara Parreiral • Serra/ES • secretaria@ipchacara.org
 </footer>
 
 <script>
   const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyNGpYKOaNiE6IXdzugvhKzx23pbKslH9FN3inBk3haYAbCyLPjiOPTbNwAv0KCQ4wQ/exec';
+
+  // Hero scroll fade
+  const hero = document.getElementById('hero');
+  window.addEventListener('scroll', () => {
+    const s = window.scrollY;
+    if (s > 100) {
+      hero.classList.add('hidden');
+      hero.classList.remove('scrolled');
+    } else if (s > 20) {
+      hero.classList.add('scrolled');
+      hero.classList.remove('hidden');
+    } else {
+      hero.classList.remove('scrolled', 'hidden');
+    }
+  }, { passive: true });
 
   // Scroll reveal
   const observer = new IntersectionObserver((entries) => {
