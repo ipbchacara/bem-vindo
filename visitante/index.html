@@ -34,21 +34,15 @@
     background-image:
       radial-gradient(ellipse at 15% 50%, rgba(58,122,34,0.18) 0%, transparent 55%),
       radial-gradient(ellipse at 85% 20%, rgba(10,34,5,0.6) 0%, transparent 55%);
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 3rem 1.5rem 5rem;
+    padding: 2rem 1.5rem 2rem;
     text-align: center;
-    position: relative;
   }
 
   .hero-logo {
-    width: 100px;
-    height: 100px;
+    width: 52px;
+    height: 52px;
     object-fit: contain;
-    margin-bottom: 1.5rem;
+    margin-bottom: 0.75rem;
     animation: floatIn 1s ease both, pulse 4s ease-in-out 1s infinite;
   }
 
@@ -64,82 +58,51 @@
 
   .hero-title {
     font-family: 'Playfair Display', serif;
-    font-size: clamp(1.8rem, 5vw, 2.6rem);
+    font-size: clamp(1.1rem, 3.5vw, 1.4rem);
     font-weight: 600;
     color: var(--texto-claro);
     line-height: 1.2;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.3rem;
     animation: fadeUp 0.8s ease 0.2s both;
   }
 
   .hero-location {
-    font-size: 0.78rem;
-    letter-spacing: 0.14em;
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
     color: var(--texto-hint);
-    margin-bottom: 1.5rem;
+    margin-bottom: 0.75rem;
     animation: fadeUp 0.8s ease 0.35s both;
   }
 
   .hero-divider {
-    width: 36px;
+    width: 24px;
     height: 1px;
     background: var(--verde-borda);
-    margin: 0 auto 1.5rem;
+    margin: 0 auto 0.75rem;
     animation: fadeUp 0.8s ease 0.45s both;
   }
 
   .hero-verse {
     font-family: 'Playfair Display', serif;
     font-style: italic;
-    font-size: clamp(0.95rem, 2.5vw, 1.1rem);
+    font-size: 0.82rem;
     color: var(--texto-muted);
-    line-height: 1.7;
-    max-width: 380px;
+    line-height: 1.6;
+    max-width: 300px;
+    margin: 0 auto;
     animation: fadeUp 0.8s ease 0.55s both;
   }
 
   .hero-verse span {
     display: block;
-    font-size: 0.8rem;
+    font-size: 0.72rem;
     color: var(--texto-hint);
-    margin-top: 0.4rem;
+    margin-top: 0.25rem;
     font-style: normal;
   }
 
-  .scroll-hint {
-    position: absolute;
-    bottom: 2rem;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 6px;
-    animation: fadeUp 1s ease 1s both;
-    cursor: pointer;
-  }
-
-  .scroll-hint p {
-    font-size: 0.72rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--texto-hint);
-  }
-
-  .scroll-arrow {
-    width: 20px;
-    height: 20px;
-    border-right: 1.5px solid var(--texto-hint);
-    border-bottom: 1.5px solid var(--texto-hint);
-    transform: rotate(45deg);
-    animation: bounce 1.6s ease-in-out infinite;
-  }
-
-  @keyframes bounce {
-    0%, 100% { transform: rotate(45deg) translateY(0); }
-    50% { transform: rotate(45deg) translateY(5px); }
-  }
+  .scroll-hint { display: none; }
 
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(16px); }
@@ -425,7 +388,7 @@
 
   @media (max-width: 480px) {
     .card { padding: 1.5rem 1.25rem; }
-    .hero { min-height: 100svh; }
+    .hero { min-height: 50svh; }
   }
 </style>
 </head>
