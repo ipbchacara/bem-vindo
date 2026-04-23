@@ -3,7 +3,6 @@
   const currentPath = window.location.pathname.replace(/\/$/, '') || '/';
 
   const links = [
-    { label: 'Início',    href: '/' },
     { label: 'Visitante', href: '/visitante' },
     { label: 'Agenda',    href: '/eventos' },
   ];
@@ -99,6 +98,17 @@
     return footer;
   }
 
+  // ── FAVICON ─────────────────────────────────────────────
+  function injectFavicon() {
+    if (!document.querySelector('link[rel="icon"]')) {
+      const link = document.createElement('link');
+      link.rel = 'icon';
+      link.type = 'image/png';
+      link.href = '/Imagens/Logos/favicon.png';
+      document.head.appendChild(link);
+    }
+  }
+
   // ── INJECT ──────────────────────────────────────────────
   // Menu: insert after hero if exists, otherwise at top of body
   function injectNav() {
@@ -123,8 +133,9 @@
   }
 
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => { injectNav(); injectFooter(); });
+    document.addEventListener('DOMContentLoaded', () => { injectFavicon(); injectNav(); injectFooter(); });
   } else {
+    injectFavicon();
     injectNav();
     injectFooter();
   }
