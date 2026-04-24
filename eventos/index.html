@@ -87,6 +87,9 @@
   .event-item-badge.culto { background: #fef0ee; border-color: #f5c4b3; color: #993C1D; }
   .event-item-badge.pgd { background: #FAEEDA; border-color: #FAC775; color: #633806; }
   .event-item-badge.escola { background: #E6F1FB; border-color: #B5D4F4; color: #0C447C; }
+  .event-item.especial { border-left-color: #e67e22; }
+  .event-item-badge.especial { background: #FEF3E2; border-color: #FAC775; color: #8a4a00; }
+  .event-pill.especial { background: #e67e22; }
   .no-events { text-align: center; padding: 24px; color: #aaa; font-size: 13px; font-style: italic; }
 
   .week-headers { display: grid; grid-template-columns: repeat(7,1fr); gap: 4px; margin-bottom: 4px; }
@@ -106,6 +109,15 @@
   .event-pill.escola { background: #185FA5; }
 
   .footer { text-align: center; padding: 1.5rem; background: var(--verde-escuro); color: var(--texto-hint); font-size: 0.75rem; }
+
+  .special-section { margin-top: 8px; }
+  .special-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--texto-hint); margin-bottom: 10px; font-family: 'Lato', sans-serif; }
+  .special-event-card { background: #fff; border-radius: 14px; overflow: hidden; box-shadow: 0 2px 12px rgba(15,34,9,0.07); margin-bottom: 12px; }
+  .special-event-img { width: 100%; max-height: 320px; object-fit: cover; display: block; }
+  .special-event-body { padding: 14px 16px; }
+  .special-event-title { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 500; color: #1a1a1a; margin-bottom: 4px; }
+  .special-event-date { font-size: 0.82rem; color: #c0392b; font-weight: 700; margin-bottom: 4px; }
+  .special-event-desc { font-size: 0.83rem; color: #666; line-height: 1.6; }
 </style>
 <script src="/nav.js"></script>
 </head>
@@ -158,6 +170,19 @@
     </div>
     <div class="month-grid" id="month-grid"></div>
   </div>
+
+  <div class="special-section" style="margin-top:24px;">
+    <p class="special-label">Eventos especiais</p>
+    <div class="special-event-card">
+      <img src="/Imagens/Eventos/25-04.jpeg" alt="Ignite Talk" class="special-event-img">
+      <div class="special-event-body">
+        <p class="special-event-date">25/04 &bull; 19h</p>
+        <p class="special-event-title">Ignite Talk &mdash; Do Playground para a Mesa</p>
+        <p class="special-event-desc">Uma conversa franca sobre f&eacute;, fam&iacute;lia e os desafios da vida real. Com Guilherme Liberato, Erika Rocha e Victoria Marins. Entrada gratuita, todos s&atilde;o bem-vindos!</p>
+      </div>
+    </div>
+  </div>
+
 </div>
 
 
@@ -178,6 +203,11 @@
     return date.getDay() === 4 && diff >= 0 && diff % 14 === 0;
   }
 
+  // Eventos especiais
+  const EVENTOS_ESPECIAIS = [
+    { date: '2026-04-25', title: 'Ignite Talk', time: '19h00', type: 'especial', badge: 'Especial', sub: 'Do Playground para a Mesa' }
+  ];
+
   function getEvents(date) {
     const ev = [];
     const dow = date.getDay();
@@ -187,6 +217,8 @@
     }
     if (dow === 2) ev.push({title:'Reunião de Oração', time:'19h30', type:'oracao', badge:'Semanal'});
     if (isPGD(date)) ev.push({title:'PGDs', time:'19h30', type:'pgd', badge:'Quinzenal', sub:'Pequeno Grupo Discipuladores'});
+    const dateStr = date.getFullYear() + '-' + String(date.getMonth()+1).padStart(2,'0') + '-' + String(date.getDate()).padStart(2,'0');
+    EVENTOS_ESPECIAIS.forEach(e => { if (e.date === dateStr) ev.push(e); });
     return ev;
   }
 
